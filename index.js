@@ -3,15 +3,15 @@ let numbersOfBtn = document.querySelectorAll(".drum").length;
 for(let i = 0; i < numbersOfBtn; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function() {
         let buttonInnerHTML = this.innerHTML;
-
-
         makeSound(buttonInnerHTML)
+        btnAnimation(buttonInnerHTML)
     });     
 }
 
 
 document.addEventListener("keydown", function(){
     makeSound(event.key)
+    btnAnimation(event.key)
 })
 
 function makeSound (key) {
@@ -53,4 +53,12 @@ function makeSound (key) {
 
             default: console.log("Smth went wrong")
     }
+}
+
+function btnAnimation (currentKey) {
+    let activeBtn = document.querySelector("." + currentKey);
+    activeBtn.classList.add("pressed")
+    setTimeout(function() {
+        activeBtn.classList.remove("pressed")
+    }, 100) 
 }
